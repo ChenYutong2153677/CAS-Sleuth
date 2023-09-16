@@ -16,6 +16,11 @@ const routes = [
     path: '/software',
     name: 'software',
     component: () => import( '../view/databaseSearch.vue')
+  },
+  {
+    path: '/databaseResult',
+    name: 'databaseResult',
+    component: () => import( '../view/databaseResult.vue')
   }
 ]
 

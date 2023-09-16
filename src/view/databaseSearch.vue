@@ -23,17 +23,17 @@
                     </svg>
                 </el-col>
                 <el-col :span="16">
-                    <input class="input" placeholder="e.g.Genomoviridae sp. ">
+                    <input class="input" placeholder="e.g.Genomoviridae sp. " v-model="input">
                 </el-col>
                 <el-col :span="3" class="bott">
-                    <button>
+                    <button @click="submit">
                         <span class="transition"></span>
                         <span class="gradient"></span>
                         <span class="label">Go</span>
                     </button>
                 </el-col>
                 <el-col :span="3" class="bott">
-                    <button style="background-color: RGB(92,210,200)">
+                    <button style="background-color: RGB(92,210,200)" @click="clear">
                         <span class="transition"></span>
                         <span class="gradient"></span>
                         <span class="label" >Clear</span>
@@ -46,7 +46,31 @@
 
 </template>
 
-<script setup>
+<script>
+export default {
+    data() {
+        return {
+            input: '',
+        }
+    },
+    name: 'databaseSearch',
+    methods: {
+        clear() {
+            console.log("before"+this.input);
+            this.input= '';
+            console.log(this.input);
+        },
+        submit(){
+            //跳转到查询结果页面，且将input传给查询结果页面
+            this.$router.push({
+                path: "/databaseResult",
+                query: {
+                    input: this.input,
+                },
+            });
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -61,9 +85,8 @@
 }
 
 .title {
-    margin-right: 18%;
     margin-top: 20%;
-    margin-left: 40%;
+    margin-left: 39%;
     color: #000000;
     font-family: Sansation;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -75,8 +98,8 @@
     letter-spacing: 0em;
     text-align: left;
     font-size: 44px;
-    padding-top: 3%;
-    margin-right: 3%;
+    padding-top: 18px;
+    margin-right: 8px;
 }
 
 .title2 {
@@ -86,8 +109,8 @@
 
 .intro {
     margin-top: 1%;
-    margin-left: 20%;
-    margin-right: 18%;
+    margin-left: 17%;
+    margin-right: 17%;
     font-family: Arial;
     font-size: 18px;
     font-weight: 400;
@@ -182,7 +205,7 @@ button:hover .transition {
 button:active {
     transform: scale(0.97);
     border:0.8px solid white;
-    font-size: 21px;
+    font-size: 19px;
 }
 .bott{
     margin-top: 2%;
