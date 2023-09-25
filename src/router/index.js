@@ -10,12 +10,17 @@ const routes = [
   {
     path: '/database',
     name: 'database',
-    component: () => import('../view/databaseSearch.vue')
+    component: () => import('../view/databaseResult.vue')
+  },
+  {
+    path: '/virus/detail',
+    name: 'virusDetail',
+    component: () => import('../view/databaseResult.vue')//稍后自行修改！！
   },
   {
     path: '/software',
     name: 'software',
-    component: () => import( '../view/databaseSearch.vue')
+    component: () => import( '../view/softwareSearch.vue')
   },
   {
     path: '/databaseResult',

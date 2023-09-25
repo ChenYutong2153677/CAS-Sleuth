@@ -61,6 +61,14 @@ export default {
             console.log(this.input);
         },
         submit(){
+            this.input=this.input.trim();
+            if(this.input==''||this.input==null||this.input==undefined||this.input.length==0){
+                this.$message({
+                    message: 'Please enter the name of the virus',
+                    type: 'warning'
+                });
+                return;
+            }
             //跳转到查询结果页面，且将input传给查询结果页面
             this.$router.push({
                 path: "/databaseResult",
