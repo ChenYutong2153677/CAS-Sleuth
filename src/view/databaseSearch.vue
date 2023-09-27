@@ -23,7 +23,7 @@
                     </svg>
                 </el-col>
                 <el-col :span="16">
-                    <input class="input" placeholder="e.g.Genomoviridae sp. " v-model="input">
+                    <input class="input" @keyup.enter="submit" placeholder="e.g.Genomoviridae sp. " v-model="input">
                 </el-col>
                 <el-col :span="3" class="bott">
                     <button @click="submit">
@@ -56,13 +56,21 @@ export default {
     name: 'databaseSearch',
     methods: {
         clear() {
+            this.input=this.input.trim();
+            if(this.input==''||this.input==null||this.input.length===0){
+                this.$message({
+                    message: 'Please enter the name of the virus',
+                    type: 'warning'
+                });
+                return;
+            }
             console.log("before"+this.input);
             this.input= '';
             console.log(this.input);
         },
         submit(){
             this.input=this.input.trim();
-            if(this.input==''||this.input==null||this.input==undefined||this.input.length==0){
+            if(this.input==''||this.input==null||this.input.length===0){
                 this.$message({
                     message: 'Please enter the name of the virus',
                     type: 'warning'

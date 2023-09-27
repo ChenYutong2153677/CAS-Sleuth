@@ -1,7 +1,7 @@
 <template>
     <div class="bg">
         <loadingLogo v-if="isLoading" style="z-index: 999"></loadingLogo>
-        <dialogBox ref="dialogBox"></dialogBox>
+        <dialogBox ref="dialogBox" :virus_id_list="virus_id_list"></dialogBox>
 
 
 
@@ -25,7 +25,7 @@
         </div>
         <!--        表格-->
         <div class="table_position">
-            <el-table :data="tableData" fit stripe style="width: 95%;opacity: 0.9" class="data-table"
+            <el-table :data="tableData" fit stripe style="width: 95%;opacity: 0.9" class="data-table" @selection-change="handleSelectionChange"
                       @row-click="clickRow" :row-class-name="tableRowClassName"
                       :header-cell-style="{
                         'height': '60px',
@@ -35,7 +35,7 @@
                         'border': 'none !important',
                       }"
             >
-                <el-table-column type="selection" width="55"/>
+                <el-table-column type="selection" width="55" v-model="multipleSelection"/>
                 <el-table-column prop="accession" label="Accession_Number" width="160">
                     <template #default="scope">
                         <div class="custom-column">
@@ -49,10 +49,10 @@
                 <el-table-column prop="organism_name" label="Organism_Name" width="170"/>
                 <el-table-column prop="isolate" label="Isolate" width="90"/>
                 <el-table-column prop="species" label="Species"/>
-                <el-table-column prop="family" label="Family"/>
+                <el-table-column prop="family" label="Family" width="130"/>
                 <el-table-column prop="length" label="Length" width="80"/>
                 <el-table-column prop="segment" label="Segment" width="90"/>
-                <el-table-column prop="geo_location" label="Geo_location" width="150"/>
+                <el-table-column prop="geo_location" label="Geo_location" width="140"/>
                 <el-table-column prop="host" label="Host"/>
                 <el-table-column prop="more" label="..." width="50"/>
             </el-table>
@@ -173,118 +173,11 @@ export default {
             input: '',
             isLoading: false,
             virus_num: 0,
-            tableData: [
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "1",
-                    "length": 3682,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 23,
-                    "accession": "NC_078779.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "2",
-                    "length": 3020,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 24,
-                    "accession": "NC_078780.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "3",
-                    "length": 548,
-                    "host": "Mus musculus",
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 25,
-                    "accession": "NC_078781.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "4",
-                    "length": 714,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 26,
-                    "accession": "NC_078782.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "5",
-                    "length": 3314,
-                    "host": "Mus musculus",
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 27,
-                    "accession": "NC_078783.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "6",
-                    "length": 9991,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 28,
-                    "accession": "NC_078784.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "4",
-                    "length": 714,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 29,
-                    "accession": "NC_078782.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "5",
-                    "length": 3314,
-                    "host": "Mus musculus",
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 30,
-                    "accession": "NC_078783.1",
-                    "family": "Adenoviridae"
-                },
-                {
-                    "isolate": null,
-                    "geo_location": null,
-                    "species": "Murine mastadenovirus A",
-                    "segment": "6",
-                    "length": 9991,
-                    "host": null,
-                    "organism_name": "Murine adenovirus 1",
-                    "virus_id": 31,
-                    "accession": "NC_078784.1",
-                    "family": "Adenoviridae"
-                }
-            ],
+            tableData: [],
             currentPage: 1,
             totalPage_num: 0,
+            multipleSelection: [],
+            virus_id_list: [],
         }
     },
     created() {
@@ -295,9 +188,16 @@ export default {
         this.getData();
     },
     methods: {
+        handleSelectionChange(val) {
+            this.multipleSelection = val;
+            //提取数组中的virus_id为一个新数组
+            this.virus_id_list = this.multipleSelection.map(item => item.virus_id);
+            console.log(this.virus_id_list);
+        },
         handle_new_input(message) {
             console.log("handle_new_input:" + message);
             this.input = message;
+            this.getData();
         },
         download() {
             this.$refs.dialogBox.openDialog();

@@ -16,6 +16,7 @@
     "sass-loader": "^13.3.2",
     "store": "^2.0.12",
     "vue": "^3.2.13",
+    "vue-json-excel": "^0.3.0",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
