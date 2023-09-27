@@ -3,12 +3,12 @@
 ">
         <img src="../assets/close.png" class="close_icon" style="width: 6%;height: 15%;"/>
         <span class="form-title">
-      File Form：
+      File form：Excel
     </span>
         <div class="mb-2 flex items-center text-sm">
             <el-radio-group v-model="radio" class="ml-4">
-                <el-radio label="excel" size="large">excel</el-radio>
-                <el-radio label="txt" size="large">txt</el-radio>
+                <el-radio label="selected" size="large">selected</el-radio>
+                <el-radio label="all" size="large">all</el-radio>
             </el-radio-group>
         </div>
 
@@ -26,12 +26,13 @@ import axios from "axios";
 
 export default {
     props: {
-        virus_id_list: Array
+        virus_id_list: Array,
+        virus_name: String
     },
     data() {
         return {
             centerDialogVisible: false,
-            radio: 'excel',
+            radio: 'selected',
             jsonFile: []
         };
     },
@@ -43,7 +44,7 @@ export default {
             console.log("内部：")
             console.log(this.virus_id_list);
             console.log(this.radio);
-            if (this.radio === 'excel') {
+            if (this.radio === 'selected') {
                 //输出文件
                 axios.get('/api/virusList-to-excel?virus_ids=' + this.virus_id_list,
                     {responseType: 'blob'}
@@ -65,9 +66,9 @@ export default {
                     ElMessage({message: 'Download failed', type: 'error'});
                 });
             }
-            if (this.radio === 'txt') {
+            if (this.radio === 'all') {
                 //输出文件
-                axios.get('/api/virusList-to-txt?virus_ids=' + this.virus_id_list,
+                axios.get('/api/virusList-to-excel/all?name=' + this.virus_name,
                     {responseType: 'blob'}
                 ).then((res) => {
                     // 将文件下载到本地
@@ -75,7 +76,7 @@ export default {
                     const downloadElement = document.createElement('a');
                     const href = window.URL.createObjectURL(blob); //创建下载的链接
                     downloadElement.href = href;
-                    downloadElement.download = 'virusList.txt'; //下载后文件名
+                    downloadElement.download = 'virus_list_all.xlsx'; //下载后文件名
                     document.body.appendChild(downloadElement);
                     downloadElement.click(); //点击下载
                     document.body.removeChild(downloadElement); //下载完成移除元素

@@ -1,7 +1,7 @@
 <template>
     <div class="bg">
         <loadingLogo v-if="isLoading" style="z-index: 999"></loadingLogo>
-        <dialogBox ref="dialogBox" :virus_id_list="virus_id_list"></dialogBox>
+        <dialogBox ref="dialogBox" :virus_id_list="virus_id_list" :virus_name="this.input"></dialogBox>
 
 
 
@@ -21,7 +21,7 @@
         </div>
         <div>
             <downloadButton @click="download" class="position" style="vertical-align: -40%"></downloadButton>
-            <span style="margin-left: 10px; line-height:15px;">the results you selected!</span>
+            <span style="margin-left: 10px; line-height:15px;">the results</span>
         </div>
         <!--        表格-->
         <div class="table_position">
