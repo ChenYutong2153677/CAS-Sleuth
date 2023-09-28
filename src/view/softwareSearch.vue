@@ -1,4 +1,4 @@
-<template>
+<template xmlns:el-col="http://www.w3.org/1999/html">
     <div class="bg">
         <div>
             <el-row>
@@ -22,10 +22,30 @@
                 <div class="hint1">
                     Input your sequence.（Please provide the sequence or file in FASTA format.）
                 </div>
-
-                <span class="filename">filename:</span>
-                <inputBox class="com_inputBox"></inputBox>
-<!--                <input class="input_box">-->
+                <el-row>
+                    <el-col :span="4">
+                        <span class="filename">filename :</span>
+                    </el-col>
+                    <el-col :span="13">
+                        <div class="file_name_box"></div>
+                    </el-col>
+                    <el-col :span="3">
+                        <el-upload style="position: relative;top: -10px;">
+                            <svg t="1695816922053" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" p-id="7133" width="20" height="20">
+                                <path d="M554.688 500.352v256H469.312v-256h-128L512 314.24l170.688 186.24h-128zM1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-259.2-205.312c-24.448-129.024-128.896-222.72-252.8-222.72-97.28 0-183.04 57.344-224.64 147.456l-9.28 20.224-20.928 2.944c-103.36 14.4-178.368 104.32-178.368 214.72 0 117.952 88.832 214.4 196.928 214.4h512c88.32 0 157.504-75.136 157.504-171.712 0-88.064-65.92-164.928-144.96-171.776l-29.504-2.56-5.888-30.976z"
+                                      fill="#384FB9" p-id="7134"></path>
+                            </svg>
+                            <span  class="upload-but" style="color: #384FB9;font-weight: bold;margin-left: 8px;position: relative;top: 3px;">upload</span>
+                        </el-upload>
+                    </el-col>
+                    <el-col :span="3">
+                        <button class="clear">clear</button>
+                    </el-col>
+                </el-row>
+                <div class="show_box">
+                    <div class="file_content">hi</div>
+                </div>
 
             </div>
         </div>
@@ -62,12 +82,27 @@
 </template>
 
 <style scoped>
-.com_inputBox{
+.file_name_box {
+    /*margin-top: 2.5%;*/
     position: relative;
-    top: -20%;
-    left:15%;
+    top: -15%;
+    width: 80%;
+    height: 65%;
+    border-radius: 26px;
+    border: 1.5px solid white;
+    opacity: 70%;
+    text-indent: 10px;
+    font-size: 17px;
+    background: linear-gradient(0deg, #C4F4E1, #C4F4E1),
+    linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+.file_content {
+    margin-left: 50px;
+    padding-top: 10px;
     width: 90%;
 }
+
 .tag {
     font-size: 12px;
 }
@@ -129,6 +164,32 @@
 .Go:hover {
     background: rgb(174, 183, 226);
     font-size: 20px;
+}
+
+.clear {
+    position: relative;
+    top: -7px;
+    left: 23%;
+    width: 75px;
+    padding-left: 19px;
+    font-family: Arial Rounded MT Bold;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+    background: #5CD2C7;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-radius: 30px;
+    border: none;
+}
+
+.clear:hover {
+    background: rgb(131, 177, 213);
+    font-size: 16.5px;
+    border: 0.5px solid #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
 }
 
 .hint1 {
@@ -222,14 +283,13 @@
     margin-left: 2%;
 }
 
-.input_box {
+.show_box {
+    background: #FFFFFF;
     margin-left: 5%;
-    margin-top: 1%;
+    /*margin-top: 1%;*/
     width: 90%;
-    height: 140px;
+    height: 130px;
     border-radius: 26px;
-    border: none;
-    text-indent: 20px;
 }
 
 input:focus {
@@ -237,18 +297,20 @@ input:focus {
 }
 
 .filename {
-    margin-left: 5.5%;
+    margin-left: 35%;
     position: relative;
     top: -5%;
+}
+.upload-but:hover {
+    font-size: 17px;
+
 }
 </style>
 
 <script>
-import inputBox from '../components/inputBox.vue'
 
 export default {
     name: 'softwareSearch',
-    components: {inputBox},
     data() {
         return {}
     },
