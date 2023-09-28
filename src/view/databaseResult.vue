@@ -212,11 +212,12 @@ export default {
             //跳转相应的详情页面
             //把tabledata里所有的virus_id提取出来
             const virus_id_list = this.tableData.map(item => item.virus_id);
+            const virus_accession_list = this.tableData.map(item => item.accession);
             console.log(virus_id_list);
             console.log(row.index);
             this.$router.push(
                 {
-                    name: 'virusDetail', params: {virus_id_list: virus_id_list, index: row.index}
+                    name: 'databaseCard', query: {virus_id_list: virus_id_list, index: row.index,virus_accession_list:virus_accession_list}
                 })
         },
         tableRowClassName({row, rowIndex}) {
