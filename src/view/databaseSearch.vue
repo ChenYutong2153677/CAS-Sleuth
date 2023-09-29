@@ -212,7 +212,9 @@ button {
     top: 50%;
     transform: translate(-50%, -50%);
 }
-
+button:hover{
+    cursor: pointer;
+}
 button:hover .transition {
     width: 14em;
     height: 14em;

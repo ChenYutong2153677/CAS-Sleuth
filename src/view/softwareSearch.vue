@@ -27,24 +27,36 @@
                         <span class="filename">filename :</span>
                     </el-col>
                     <el-col :span="13">
-                        <div class="file_name_box"></div>
+                        <div class="file_name_box"> {{this.filename}}</div>
                     </el-col>
                     <el-col :span="3">
-                        <el-upload style="position: relative;top: -10px;">
+                        <el-upload style="position: relative;top: -10px;"
+                                   class="upload-demo"
+                                   action="#"
+                                   :show-file-list="false"
+                                   :auto-upload="false"
+                                   :on-change="uploadFile">
+
                             <svg t="1695816922053" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="7133" width="20" height="20">
                                 <path d="M554.688 500.352v256H469.312v-256h-128L512 314.24l170.688 186.24h-128zM1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-259.2-205.312c-24.448-129.024-128.896-222.72-252.8-222.72-97.28 0-183.04 57.344-224.64 147.456l-9.28 20.224-20.928 2.944c-103.36 14.4-178.368 104.32-178.368 214.72 0 117.952 88.832 214.4 196.928 214.4h512c88.32 0 157.504-75.136 157.504-171.712 0-88.064-65.92-164.928-144.96-171.776l-29.504-2.56-5.888-30.976z"
                                       fill="#384FB9" p-id="7134"></path>
                             </svg>
-                            <span  class="upload-but" style="color: #384FB9;font-weight: bold;margin-left: 8px;position: relative;top: 3px;">upload</span>
+                            <span class="upload-but"
+                                  style="color: #384FB9;font-weight: bold;margin-left: 8px;position: relative;top: 3px;">upload</span>
                         </el-upload>
                     </el-col>
                     <el-col :span="3">
-                        <button class="clear">clear</button>
+                        <button class="clear" @click="clear">clear</button>
                     </el-col>
                 </el-row>
                 <div class="show_box">
-                    <div class="file_content">hi</div>
+                    <div class="file_content">{{this.file_content}}</div>
+<!--                    <el-input-->
+<!--                        v-model="this.file_content"-->
+<!--                        :rows="6"-->
+<!--                        type="textarea"-->
+<!--                    />-->
                 </div>
 
             </div>
@@ -66,18 +78,23 @@
                     Choose cas protein according your virus type.
                 </div>
 
-                <div class="option-box cas9">
-                    <div class="tag tag1">DNA virus</div>
-                </div>
-                <div class="option-box cas12">
-                    <div class=" tag tag2">Retroviral RNA virus</div>
-                </div>
-                <div class="option-box cas13">
-                    <div class="tag tag1">RNA virus</div>
-                </div>
+                <el-radio-group v-model="radio" style="width: 100%;position: relative;top: -10%;z-index: 99;">
+                    <div class="option-box cas9">
+                        <el-radio label="cas9" class="radio">cas 9</el-radio>
+                        <div class="tag tag1">DNA virus</div>
+                    </div>
+                    <div class="option-box cas12">
+                        <el-radio label="cas12" class="radio">cas 12a</el-radio>
+                        <div class=" tag tag2">Retroviral RNA virus</div>
+                    </div>
+                    <div class="option-box cas13">
+                        <el-radio label="cas13" class="radio">cas 13a</el-radio>
+                        <div class="tag tag1">RNA virus</div>
+                    </div>
+                </el-radio-group>
             </div>
         </div>
-        <button class="Go">GO</button>
+        <button class="Go" @click="Go">GO</button>
     </div>
 </template>
 
@@ -101,6 +118,9 @@
     margin-left: 50px;
     padding-top: 10px;
     width: 90%;
+    height: 90%;
+    overflow-y:auto;
+    font-size: 13px;
 }
 
 .tag {
@@ -109,30 +129,26 @@
 
 .tag1 {
     margin-left: 180px;
-    padding-top: 16px;
+    position: relative;
+    top: -45%;
 }
 
 .tag2 {
     margin-left: 130px;
-    padding-top: 16px;
+    position: relative;
+    top: -45%;
 }
 
 .cas9 {
-    position: relative;
-    left: 7%;
-    top: -10%;
+    margin-left: 6%;
 }
 
 .cas12 {
-    position: relative;
-    left: 38%;
-    top: -50%;
+    margin-left: 3%;
 }
 
 .cas13 {
-    position: relative;
-    left: 70%;
-    top: -91%;
+    margin-left: 3%;
 }
 
 .option-box {
@@ -164,6 +180,7 @@
 .Go:hover {
     background: rgb(174, 183, 226);
     font-size: 20px;
+    cursor: pointer;
 }
 
 .clear {
@@ -189,7 +206,15 @@
     font-size: 16.5px;
     border: 0.5px solid #FFFFFF;
     box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
+}
 
+.clear:active {
+    background: rgb(131, 177, 213);
+    font-size: 15px;
+    border: 0.5px solid #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    cursor: pointer;
 }
 
 .hint1 {
@@ -301,19 +326,94 @@ input:focus {
     position: relative;
     top: -5%;
 }
+
 .upload-but:hover {
     font-size: 17px;
 
 }
+
+.radio {
+    margin-left: 5%;
+    margin-top: 3%;
+    color: black;
+    font-weight: bold;
+    line-height: 27.6px;
+}
+
+/*:deep(.el-radio__label) {*/
+/*    color: rgb(0,172,198);*/
+/*}*/
+/*//修改选中label文字*/
+:deep(.el-radio__input.is-checked + .el-radio__label) {
+    color: rgb(1, 184, 211) !important;
+}
+
+/*//修改选中radio背景色、边框*/
+:deep(.el-radio__input.is-checked .el-radio__inner) {
+    background: rgb(1, 184, 211) !important;
+    border-color: rgb(1, 184, 211) !important;
+}
+
 </style>
 
 <script>
+import axios from 'axios'
+import {ElMessage} from 'element-plus'
 
 export default {
     name: 'softwareSearch',
     data() {
-        return {}
+        return {
+            radio: 'cas9',
+            file_content: '',
+            filename: '',
+        }
     },
-    methods: {}
+    methods: {
+        clear() {
+            this.file_content = ''
+            this.filename = ''
+        },
+        Go() {
+            if(this.file_content === ''||this.file_content === undefined||this.file_content === null){
+                ElMessage.error('Please upload fasta file')
+                return
+            }else {
+                this.$router.push(
+                    {
+                        name: 'softwareProcess', query: {content: this.file_content, type: this.radio}
+                    })
+            }
+        },
+        uploadFile(item) {
+            console.log(item);
+            this.filename = item.name;
+//将item变为可上传的formdata形式
+
+            let formData = new FormData();
+            formData.append('file', item.raw, item.name);
+
+            axios({
+                    url: 'api/software/upload',
+                    method: 'post',
+                    data: formData,
+                    headers: {
+                        'Content-Type': 'multipart/form-data; boundary=--------------------------868167832119460521212429',
+                    },
+                }
+            ).then(res => {
+                console.log(res);
+                if (res.data.status === true) {
+                    ElMessage.success('success');
+                    this.file_content = res.data.content;
+                } else {
+                    ElMessage.error('Please upload fasta file!');
+                }
+            }).catch(err => {
+                console.log(err);
+                ElMessage.error("connect error");
+            })
+        }
+    }
 }
 </script>

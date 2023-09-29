@@ -31,6 +31,11 @@ const routes = [
     path: '/databaseCard',
     name: 'databaseCard',
     component: () => import( '../view/databaseCard.vue')
+  },
+  {
+    path: '/softwareProcess',
+    name: 'softwareProcess',
+    component: () => import( '../view/databaseResult.vue')//稍后自行修改！！
   }
 ]
 

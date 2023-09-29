@@ -57,7 +57,9 @@ export default {
     margin-left: 17%;
     color: #000000;
 }
-
+button:hover{
+    cursor: pointer;
+}
 .input {
     margin-top: 2.5%;
     width: 95%;
