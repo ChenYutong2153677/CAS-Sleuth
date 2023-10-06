@@ -79,73 +79,24 @@
         <label for="radio2">selected</label>
       </div>
     </div>
-    <el-dropdown style="position: absolute; left: 70%; top: 40%">
-      <el-button type="primary" style="
-          width: 150px;
-          height: 27px;
-          border-radius: 20px;
-          background-color: white;
-          color: #384fb9;
-        ">
-        {{ detail.accession }}<el-icon class="icon-droplist"></el-icon>
-      </el-button>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item v-for="(v, index) in virus_accession_list" :key="v.order" style="
-              font-size: small;
-              width: 80px;
-              height: 10px;
-              color: #384fb9;
-            " @click="goto_virus(index)">
-            {{ v }}</el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-    <el-button class="left-button" @click="left_arrow" border></el-button>
-    <div style="
-        position: absolute;
-        left: 89%;
-        top: 43%;
-        background-color: #ffffff;
-        width: 3%;
-        border-radius: 20px;
-        text-align: center;
-      ">
-      {{ number }}
-    </div>
-    <el-button class="right-button" @click="right_arrow" border></el-button>
+
+    
   </el-card>
-  <!-- <div style="z-index: 9; position: absolute; height: 100%">
-    <el-checkbox
-      label="1"
-      style="
-        position: absolute;
-        top: 27%;
-        left: 210px;
-        width: 150px;
-        height: 50px;
-        background-color: #00acc6;
-        border-radius: 30px;
-        color: white;
-        border: 0ch;
-      "
-      border
-      >Basic</el-checkbox
-    >
-    <el-checkbox label="2" class="grna_info" v-model="ischecked" border
-      >grna_info</el-checkbox
-    >
-  </div> -->
   <!--使用isChecked1与isChecked2分别表示两个变量-->
   <div style="z-index: 9; position: absolute; height: 70%">
     <div class="custom-checkbox" style="position: absolute; top: 40%; left: 13vw">
       <input type="checkbox" id="checkbox1" v-model="isChecked1" />
-      <label for="checkbox1" style="line-height: 50px; text-align: center">basic</label>
+      <label for="checkbox1" style="line-height: 50px; text-align: center">original</label>
     </div>
-    <div class="custom-checkbox" style="position: absolute; top: 130%; left: 13vw">
+    <div class="custom-checkbox" style="position: absolute; top:110%; left: 13vw">
+      <input type="checkbox" id="checkbox2" v-model="isChecked3" />
+      <label for="checkbox2" style="line-height: 50px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp; name</label>
+    </div>
+    <div class="custom-checkbox" style="position: absolute; top: 150%; left: 13vw">
       <input type="checkbox" id="checkbox2" v-model="isChecked2" />
       <label for="checkbox2" style="line-height: 50px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;grna_info</label>
     </div>
+    
   </div>
 
   <el-card class="card-content-bg">
@@ -157,99 +108,21 @@
         height: 500px;
         opacity: 1;
       ">
-      <el-text style="
-          font-family: 'Arial';
-          z-index: 10;
-          position: absolute;
-          top: 30%;
-          left: 15%;
-          font-size: 16px;
-        ">
-        Accession:
-      </el-text>
-      <el-text style="
-          font-family: 'Arial';
-          z-index: 10;
-          position: absolute;
-          top: 29%;
-          left: 30%;
-          font-size: 24px;
-          font-weight: bold;
-        ">
-        {{ detail.accession }}
-      </el-text>
-      <br />
-      <el-text style="
-          font-family: 'Arial';
-          z-index: 10;
-          position: absolute;
-          top: 37%;
-          left: 15%;
-          font-size: 16px;
-        ">
-        Organism_Name:
-      </el-text>
-      <el-text style="
-          font-family: 'Arial';
-          z-index: 10;
-          position: absolute;
-          top: 36%;
-          left: 30%;
-          font-size: 24px;
-          font-weight: bold;
-        ">
-        {{ detail.organism_name }}
-      </el-text>
-      <el-divider style="
-          z-index: 10;
-          position: absolute;
-          top: 40%;
-          width: 80%;
-          left: 10%;
-        " />
-      <div style="position: absolute; top: 50%; left: 15%; width: 70%">
-        <el-row :gatter="20">
-          <el-col :span="3">Isolate：</el-col>
-          <el-col :span="8" style="font-weight: bold; font-size: large">{{
-            detail.isolate
-          }}</el-col>
-          <el-col :span="4">Segment：</el-col>
-          <el-col :span="4" style="font-weight: bold; font-size: large">{{
-            detail.segment
-          }}</el-col>
-        </el-row>
-        <br />
-        <el-row :gatter="20">
-          <el-col :span="3">Species：</el-col>
-          <el-col :span="8" style="font-weight: bold; font-size: large">{{
-            detail.species
-          }}</el-col>
-          <el-col :span="4">Geo_Location：</el-col>
-          <el-col :span="4" style="font-weight: bold; font-size: large">{{
-            detail.geo_location
-          }}</el-col>
-        </el-row>
-        <br />
-        <el-row :gatter="20">
-          <el-col :span="3">Family：</el-col>
-          <el-col :span="8" style="font-weight: bold; font-size: large">{{
-            detail.family
-          }}</el-col>
-          <el-col :span="4">Host：</el-col>
-          <el-col :span="4" style="font-weight: bold; font-size: large">{{
-            detail.host
-          }}</el-col>
-        </el-row>
-        <br />
-        <el-row :gatter="20">
-          <el-col :span="3">Length：</el-col>
-          <el-col :span="8" style="font-weight: bold; font-size: large">{{
-            detail.length
-          }}</el-col>
-          <el-col :span="4">Type：</el-col>
-          <el-col :span="4" style="font-weight: bold; font-size: large">DNA Virus</el-col>
-        </el-row>
-      </div>
+      <div style="
+              border: 2px solid black;
+              position: absolute;
+              top: 33%;
+              width: 90%;
+              left: 5%;
+              height: 50%;
+              border-radius: 20px;
+            ">
+      <div class="scroller-origin">
+              <el-text class="scroller-text">
+                {{ content }}
+              </el-text>
+            </div>
+          </div>
     </el-card>
     <button class="button-cas9" :style="{ 'z-index': cas9, 'background-color': cas9_color }" @click="cas_9_click">
       cas 9
@@ -263,7 +136,21 @@
     <el-card style="
         position: absolute;
         left: 5%;
-        top: 22%;
+        top: 18%;
+        background-color: white;
+        width: 90%;
+        height: 5%;
+        opacity: 1;
+        z-index: 8;
+      ">
+      <el-text style="position: absolute; top:45%; left: 15%;font-family: 'Arial';font-size: 24px;font-weight: bold;">
+        {{ name }}
+      </el-text>
+    </el-card>
+    <el-card style="
+        position: absolute;
+        left: 5%;
+        top: 26%;
         background-color: white;
         width: 90%;
         height: 80%;
@@ -487,11 +374,9 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 
 import axios from "axios";
-const virus_id_list = ref([]);
-const index = ref(0);
-const number = ref(1);
 // const radio1 = ref(["1"]);
-const virus_id = ref(111);
+const sequence=ref('')
+const name=ref('')
 const cas9 = ref(8);
 const cas9_color = ref("rgba(196, 196, 196, 1)");
 const cas12_color = ref("rgba(196, 196, 196, 1)");
@@ -500,105 +385,104 @@ const cas12 = ref(7);
 const cas13 = ref(7);
 const type = ref("");
 const  selectedValue=ref("2");
-const detail = ref({
-  isolate: "",
-  geo_location: "",
-  species: "",
-  segment: "",
-  length: 123,
-  host: "",
-  organism_name: "Giant panda associated gemycircularvirus",
-  accession: "NC_075336.1",
-  family: "Genomoviridae",
-});
 const cas_result = ref([]);
 const cas_result_order_by_percentage = ref([]);
 const cas_result_order = ref([]);
 const isClicked = ref(false);
 const isChecked1=ref(false);
 const isChecked2=ref(false);
+const isChecked3=ref(false)
 // const ischecked = ref(false);
-const virus_accession_list = ref([]);
+const content=ref('')
 
 const chooseAll=()=>{
   isChecked1.value=true;
   isChecked2.value=true;
+  isChecked3.value=true;
 }
 const chooseSelected=()=>{
   isChecked1.value=false;
   isChecked2.value=false;
+  isChecked3.value=false;
 }
-const downloadClicked = () => {
-  console.log("download");
-  console.log(selectedValue.value==="2");
-  console.log(isChecked1.value,isChecked2.value);
-  isClicked.value = true;
-  const exportData=ref([])
-  exportData.value.push('http://43.133.192.56:5555///virus-to-excel?virus_id='+virus_id.value)
-  exportData.value.push('http://43.133.192.56:5555//cas-to-excel?type='+type.value+'&virus_id='+virus_id.value)
-  if(isChecked1.value===true && isChecked2.value===true){
-    for (let i = 0; i < exportData.value.length; i++){
-      downloadFile(exportData.value[i])
-    }
-  }
-  else if(isChecked1.value===true){
-    downloadFile(exportData.value[0])
-  }
-  else if(isChecked2.value===true){
-    downloadFile(exportData.value[1])
-  }
+const downloadClicked = async () => {
+  try {
+        // 发送POST请求并获取文件数据
+        const response = await fetch('/api/software-to-excel', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', // 根据你的需求设置适当的Content-Type
+          },
+          body: JSON.stringify({
+            cas_result: cas_result.value,
+            name: name.value,
+            type:type.value
+            // 添加其他要发送的数据
+          }),
+        });
 
-  setTimeout(() => {
-    isClicked.value = false;
-  }, 200);  // 200毫秒后恢复原样
+        if (!response.ok) {
+          throw new Error('请求失败'); // 处理请求失败的情况
+        }
+
+        // 获取文件数据
+        const blob = await response.blob();
+
+        // 创建Blob URL
+        const blobUrl = URL.createObjectURL(blob);
+
+        // 创建一个隐藏的<a>元素，设置href属性为Blob URL
+        const link = document.createElement('a');
+        link.href = blobUrl;
+         // 下载的文件名
+
+        // 模拟点击<a>元素以触发下载
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // 释放Blob URL
+        URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        console.error('发生错误：', error);
+      }
 };
-onMounted(() => {
-  virus_id_list.value = route.query.virus_id_list;
-  virus_accession_list.value = route.query.virus_accession_list;
-  console.log(route.query.virus_id_list);
-  index.value = route.query.index;
-  number.value = 1 + parseInt(index.value);
-  console.log(number.value);
-  console.log(route.query.index);
-  virus_id.value = virus_id_list.value[index.value];
-  console.log("index");
-  console.log(virus_id.value);
-  type.value = "cas9";
-  get_basic_information();
-  get_cas_information();
-  cas9.value = 9;
-  cas9_color.value = "rgba(92, 210, 199, 1)";
+onMounted(async () => {
+
+  content.value=route.query.content
+  type.value=route.query.type
+
+  get_cas_information()
+  
+  if(type.value==='cas9'){
+    cas9.value = 9;
+    cas9_color.value = "rgba(92, 210, 199, 1)";
+  }
+  else if(type.value==='cas12'){
+    cas12.value = 9;
+    cas12_color.value = "rgba(92, 210, 199, 1)";
+  }
+  else if(type.value==='cas13a'){
+    cas13.value = 9;
+    cas13_color.value = "rgba(92, 210, 199, 1)";
+  }
 });
 
-const get_basic_information = async () => {
-  console.log("chufale");
-  // const data={virus_id:virus_id.value}
-  await axios
-    .get("/api/virus/detail?virus_id=" + virus_id.value)
-    .then((response) => {
-      // 处理成功响应
-      console.log(response.data.accession);
-      detail.value.accession = response.data.accession;
-      detail.value.geo_location = response.data.geo_location;
-      detail.value.species = response.data.species;
-      detail.value.segment = response.data.segment;
-      detail.value.length = response.data.length;
-      detail.value.host = response.data.host;
-      detail.value.organism_name = response.data.organism_name;
-      detail.value.accession = response.data.accession;
-      detail.value.family = response.data.family;
-    })
-    .catch((error) => {
-      // 处理错误
-      console.error(error);
-    });
-};
-
-const get_cas_information = async () => {
-  await axios
-    .get(
-      "/api/cas/findAllSeq?type=" + type.value + "&virus_id=" + virus_id.value
-    )
+const get_cas_information=async ()=>{
+  await axios({
+                    url: '/api/software/process',
+                    method: 'post',
+                    data: JSON.stringify({
+                      type:type.value,
+                      content:content.value
+            // 添加其他要发送的数据
+          }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
     .then((response) => {
       // 处理成功响应
       console.log(response.data.cas_result);
@@ -610,6 +494,9 @@ const get_cas_information = async () => {
       cas_result_order.value = JSON.parse(JSON.stringify(cas_result.value));
       cas_result_order_by_percentage.value.sort((a, b) => a.index - b.index);
       cas_result_order.value.sort((a, b) => a.order - b.order);
+      name.value=response.data.name
+      sequence.value=response.data.sequence
+
     })
     .catch((error) => {
       // 处理错误
@@ -618,7 +505,7 @@ const get_cas_information = async () => {
       cas_result.value = [];
       console.error(error);
     });
-};
+}
 
 function cas_9_click() {
   cas9.value = 9;
@@ -661,71 +548,11 @@ function go_to_below(index) {
   console.log(height);
   window.scrollTo({ top: height, behavior: "smooth" });
 }
-
-function left_arrow() {
-  if (index.value > 0) {
-    index.value = parseInt(index.value) - 1;
-    number.value = parseInt(number.value) - 1;
-    virus_id.value = virus_id_list.value[index.value];
-    type.value = "cas9";
-    get_basic_information();
-    get_cas_information();
-    cas9.value = 9;
-    cas9_color.value = "rgba(92, 210, 199, 1)";
-    cas12.value = 8;
-    cas13.value = 8;
-    cas12_color.value = "rgba(196, 196, 196, 1)";
-    cas13_color.value = "rgba(196, 196, 196, 1)";
-  }
-}
-
-        function right_arrow(){
-         if(index.value<virus_id_list.value.length-1){
-         index.value=parseInt(index.value)+1
-         number.value=parseInt(number.value)+1
-         virus_id.value=virus_id_list.value[index.value]
-         type.value='cas9'
-         get_basic_information();
-         get_cas_information();
-         cas9.value=9
-         cas9_color.value='rgba(92, 210, 199, 1)'
-         cas12.value=8
-         cas13.value=8
-         cas12_color.value='rgba(196, 196, 196, 1)'
-         cas13_color.value='rgba(196, 196, 196, 1)'
-        }
-
-       }
        
-       function goto_virus(i){
-         index.value=i
-         number.value=i+1
-         virus_id.value=virus_id_list.value[index.value]
-         type.value='cas9'
-         get_basic_information();
-         get_cas_information();
-         cas9.value=9
-         cas9_color.value='rgba(92, 210, 199, 1)'
-         cas12.value=8
-         cas13.value=8
-         cas12_color.value='rgba(196, 196, 196, 1)'
-         cas13_color.value='rgba(196, 196, 196, 1)'
-       }
 //    function handle_new_input(message) {
 //             console.log("handle_new_input:" + message);
 //             this.input = message;
 //         }
-const downloadFile = (url) => {
-  const iframe = document.createElement("iframe");
-  iframe.style.display = "none"; // 防止影响页面
-  iframe.style.height = 0; // 防止影响页面
-  iframe.src = url; 
-  document.body.appendChild(iframe); // 这一行必须，iframe挂在到dom树上才会发请求
-  // 5分钟之后删除（onload方法对于下载链接不起作用，就先抠脚一下吧）
-  setTimeout(()=>{
-    iframe.remove();
-  }, 5 * 60 * 1000);
-}
 </script>
 
 <style scoped>
@@ -881,7 +708,7 @@ const downloadFile = (url) => {
 .button-cas9 {
   position: absolute;
   left: 45%;
-  top: 20%;
+  top: 24%;
   width: 170px;
   height: 70px;
   border-radius: 20px;
@@ -902,7 +729,7 @@ const downloadFile = (url) => {
 .button-cas12 {
   position: absolute;
   left: 60%;
-  top: 20%;
+  top: 24%;
   width: 170px;
   height: 70px;
   border-radius: 20px;
@@ -923,7 +750,7 @@ const downloadFile = (url) => {
 .button-cas13 {
   position: absolute;
   left: 75%;
-  top: 20%;
+  top: 24%;
   width: 170px;
   height: 70px;
   border-radius: 20px;
@@ -1079,4 +906,41 @@ const downloadFile = (url) => {
   border: 3px solid white;
 }
 
+.scroller-origin {
+  position: absolute;
+  top: 10%;
+  width: 70%;
+  left: 15%;
+  height: 80%;
+  overflow-y: auto;
+}
+
+.scroller-origin::-webkit-scrollbar {
+  width: 7px;
+  height: 5px;
+  left: 5%;
+}
+
+.scroller-origin::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  /* 设置滚动条轨道的背景色 */
+  width: 10px;
+  border-radius: 20px;
+  /* 设置轨道的圆角 */
+}
+
+/* 滚动条滑块 */
+.scroller-origin::-webkit-scrollbar-thumb {
+  background-color: #00c0b0;
+  /* 设置滚动条滑块的背景色 */
+  width: 10px;
+  border-radius: 20px;
+  /* 设置滑块的圆角 */
+}
+
+/* 鼠标悬停在滑块上时的样式 */
+.scroller-origin::-webkit-scrollbar-thumb:hover {
+  background-color: #00c0b0;
+  /* 设置滚动条滑块的背景色 */
+}
 </style>

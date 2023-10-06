@@ -35,8 +35,8 @@ const routes = [
   {
     path: '/softwareProcess',
     name: 'softwareProcess',
-    component: () => import( '../view/databaseResult.vue')//稍后自行修改！！
-  }
+    component: () => import( '../view/softwareProcess.vue')//稍后自行修改！！
+  },
 ]
 
 const router = createRouter({
