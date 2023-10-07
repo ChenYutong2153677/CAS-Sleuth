@@ -1,20 +1,20 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../view/databaseSearch.vue'
+
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
-    component: HomeView
+    component: () => import('../view/HomePage.vue')
+  },
+  {
+    path: '/databaseSearch',
+    name: 'databaseSearch',
+    component: () => import('../view/databaseSearch.vue')
   },
   {
     path: '/database',
     name: 'database',
-    component: () => import('../view/databaseResult.vue')
-  },
-  {
-    path: '/virus/detail',
-    name: 'virusDetail',
     component: () => import('../view/databaseResult.vue')
   },
   {

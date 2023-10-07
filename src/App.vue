@@ -1,23 +1,42 @@
 <template>
-    <nav>
-        <el-row>
-            <el-col :span="23">
-                <router-link to="/" class="logo"><img src="./assets/logo1.png"/></router-link>
-            </el-col>
-            <el-col :span="1" style="margin-top: 1%">
-                <el-row>
-                <router-link to="/database" >database</router-link></el-row>
-                <el-row>
-                <router-link to="/software">software</router-link></el-row>
-            </el-col>
-        </el-row>
-    </nav>
-    <img class="logo2" src="./assets/logo2.png"/>
+    <div v-show="this.$route.path!=='/home'">
+        <nav>
+            <el-row>
+                <el-col :span="23">
+                    <router-link to="/home" class="logo"><img src="./assets/logo1.png"/></router-link>
+                </el-col>
+                <el-col :span="1" style="margin-top: 1%">
+                    <el-row>
+                        <router-link to="/database" >database</router-link></el-row>
+                    <el-row>
+                        <router-link to="/software">software</router-link></el-row>
+                </el-col>
+            </el-row>
+        </nav>
+        <img class="logo2" src="./assets/logo2.png"/>
+    </div>
     <router-view/>
 
 </template>
 
 <script>
+export default {
+    name: 'App',
+    components: {
+    },
+    data() {
+        return {
+        }
+    },
+    methods: {
+    },
+    created() {
+        // 切到首页
+        this.$router.replace({
+            path: "/home",
+        });
+    }
+}
 
 </script>
 
@@ -45,15 +64,6 @@ nav {
     position: absolute;
     left: 3%;
     top: 2%;
-}
-.guide_item{
-    font-family: Orbitron;
-    text-decoration: none;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0.18em;
-    text-align: left;
-    color: RGB(120,120,120);
 }
 nav a {
     font-family: Orbitron;
