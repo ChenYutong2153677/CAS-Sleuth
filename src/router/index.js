@@ -15,17 +15,12 @@ const routes = [
   {
     path: '/virus/detail',
     name: 'virusDetail',
-    component: () => import('../view/databaseResult.vue')//稍后自行修改！！
+    component: () => import('../view/databaseResult.vue')
   },
   {
     path: '/software',
     name: 'software',
     component: () => import( '../view/softwareSearch.vue')
-  },
-  {
-    path: '/databaseResult',
-    name: 'databaseResult',
-    component: () => import( '../view/databaseResult.vue')
   },
   {
     path: '/databaseCard',
@@ -35,7 +30,7 @@ const routes = [
   {
     path: '/softwareProcess',
     name: 'softwareProcess',
-    component: () => import( '../view/softwareProcess.vue')//稍后自行修改！！
+    component: () => import( '../view/softwareProcess.vue')
   },
 ]
 

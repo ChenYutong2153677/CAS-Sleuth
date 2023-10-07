@@ -6,7 +6,7 @@
             </el-col>
             <el-col :span="1" style="margin-top: 1%">
                 <el-row>
-                <router-link to="/database">database</router-link></el-row>
+                <router-link to="/database" >database</router-link></el-row>
                 <el-row>
                 <router-link to="/software">software</router-link></el-row>
             </el-col>
@@ -14,6 +14,7 @@
     </nav>
     <img class="logo2" src="./assets/logo2.png"/>
     <router-view/>
+
 </template>
 
 <script>
@@ -45,7 +46,15 @@ nav {
     left: 3%;
     top: 2%;
 }
-
+.guide_item{
+    font-family: Orbitron;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.18em;
+    text-align: left;
+    color: RGB(120,120,120);
+}
 nav a {
     font-family: Orbitron;
     text-decoration: none;
@@ -57,9 +66,9 @@ nav a {
 }
 
 nav a.router-link-exact-active {
+    font-family: Orbitron;
     font-weight: bold;
     color: #00C0AF;
-    font-family: Orbitron;
     font-size: 22px;
     line-height: 40px;
     letter-spacing: 0.18em;

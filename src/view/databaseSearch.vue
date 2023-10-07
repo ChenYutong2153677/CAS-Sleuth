@@ -79,7 +79,7 @@ export default {
             }
             //跳转到查询结果页面，且将input传给查询结果页面
             this.$router.push({
-                path: "/databaseResult",
+                path: "/database",
                 query: {
                     input: this.input,
                 },
