@@ -1,4 +1,4 @@
-# cas-sleuth
+# CAS-Sleuth
 
 ## Project setup
 ```
