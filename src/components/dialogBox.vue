@@ -46,7 +46,7 @@ export default {
             console.log(this.radio);
             if (this.radio === 'selected') {
                 //输出文件
-                axios.get('/api/virusList-to-excel?virus_ids=' + this.virus_id_list,
+                axios.get('http://43.133.192.56:5555/api/virusList-to-excel?virus_ids=' + this.virus_id_list,
                     {responseType: 'blob'}
                 ).then((res) => {
                     // 将文件下载到本地
@@ -68,7 +68,7 @@ export default {
             }
             if (this.radio === 'all') {
                 //输出文件
-                axios.get('/api/virusList-to-excel/all?name=' + this.virus_name,
+                axios.get('http://43.133.192.56:5555/api/virusList-to-excel/all?name=' + this.virus_name,
                     {responseType: 'blob'}
                 ).then((res) => {
                     // 将文件下载到本地

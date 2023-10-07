@@ -394,7 +394,7 @@ export default {
             formData.append('file', item.raw, item.name);
 
             axios({
-                    url: 'api/software/upload',
+                    url: 'http://43.133.192.56:5555/api/software/upload',
                     method: 'post',
                     data: formData,
                     headers: {

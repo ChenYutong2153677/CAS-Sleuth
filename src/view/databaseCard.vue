@@ -63,7 +63,7 @@
         </el-button>
     </div> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
+    <confirmBox ref="confirmBoxRef"></confirmBox>
 <div>
   <el-card class="card-head">
     <button class="custom-button" @click="downloadClicked" :class="{ clicked: isClicked }">
@@ -482,7 +482,8 @@ import { onMounted, ref } from "vue";
 //import { ArrowDown } from '@element-plus/icons-vue'
 //const virus_name = ref('')
 import { useRoute } from "vue-router";
-
+import confirmBox from "@/components/confirmBox.vue";
+const confirmBoxRef=ref()
 //    const router=useRouter()
 const route = useRoute();
 
@@ -574,7 +575,7 @@ const get_basic_information = async () => {
   console.log("chufale");
   // const data={virus_id:virus_id.value}
   await axios
-    .get("/api/virus/detail?virus_id=" + virus_id.value)
+    .get("http://43.133.192.56:5555/api/virus/detail?virus_id=" + virus_id.value)
     .then((response) => {
       // 处理成功响应
       console.log(response.data.accession);
@@ -597,12 +598,17 @@ const get_basic_information = async () => {
 const get_cas_information = async () => {
   await axios
     .get(
-      "/api/cas/findAllSeq?type=" + type.value + "&virus_id=" + virus_id.value
+      "http://43.133.192.56:5555/api/cas/findAllSeq?type=" + type.value + "&virus_id=" + virus_id.value
     )
     .then((response) => {
       // 处理成功响应
       console.log(response.data.cas_result);
       cas_result.value = response.data.cas_result;
+
+      if(cas_result.value.length<1){
+        confirmBoxRef.value.openDialog()
+      }
+
       console.log(cas_result.value.length);
       cas_result_order_by_percentage.value = JSON.parse(
         JSON.stringify(cas_result.value)

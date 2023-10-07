@@ -225,7 +225,7 @@ export default {
         },
         getData() {
             this.isLoading = true;
-            axios.get('/api/virus/page?name='+this.input+'&pageNum='+this.currentPage+'&pageSize=9').then((res) => {
+            axios.get('http://43.133.192.56:5555/api/virus/page?name='+this.input+'&pageNum='+this.currentPage+'&pageSize=9').then((res) => {
                 console.log("已获取到数据");
                 console.log(res)
                 res= res.data;
