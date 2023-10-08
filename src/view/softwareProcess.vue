@@ -351,10 +351,10 @@
 
           <div v-for="v in cas_result_order" :key="v.index" class="sequence" :style="{ opacity: 1.2 - v.order / 10 }"
             :id="v.index">
-            <el-text style="position: absolute; color: white; left: 5%; top: 40%">{{ v.order }}</el-text>
-            <el-text style="position: absolute; color: white; left: 25%; top: 40%">{{ v.score }}</el-text>
-            <el-text style="position: absolute; color: white; left: 40%; top: 40%">{{ v.show_seq }}</el-text>
-            <el-text style="position: absolute; color: white; left: 85%; top: 40%">{{ v.index }}</el-text>
+            <el-text style="position: absolute; color: black; left: 5%; top: 40%;font-weight: bold;">{{ v.order }}</el-text>
+            <el-text style="position: absolute; color: black; left: 25%; top: 40%;font-weight: bold;">{{ v.score }}</el-text>
+            <el-text style="position: absolute; color: black; left: 40%; top: 40%;font-weight: bold;">{{ v.show_seq }}</el-text>
+            <el-text style="position: absolute; color: black; left: 85%; top: 40%;font-weight: bold;">{{ v.index }}</el-text>
           </div>
         </div>
       </div>
