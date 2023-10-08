@@ -667,10 +667,10 @@ const downloadClicked = () => {
   isClicked.value = true;
   const exportData = ref([]);
   exportData.value.push(
-    "http://43.133.192.56:5555///virus-to-excel?virus_id=" + virus_id.value
+    "https://tongji-software-igem2023.com///virus-to-excel?virus_id=" + virus_id.value
   );
   exportData.value.push(
-    "http://43.133.192.56:5555//cas-to-excel?type=" +
+    "https://tongji-software-igem2023.com//cas-to-excel?type=" +
       type.value +
       "&virus_id=" +
       virus_id.value
@@ -712,7 +712,7 @@ const get_basic_information = async () => {
   // const data={virus_id:virus_id.value}
   await axios
     .get(
-      "http://43.133.192.56:5555/api/virus/detail?virus_id=" + virus_id.value
+      "https://tongji-software-igem2023.com/api/virus/detail?virus_id=" + virus_id.value
     )
     .then((response) => {
       // 处理成功响应
@@ -736,7 +736,7 @@ const get_basic_information = async () => {
 const get_cas_information = async () => {
   await axios
     .get(
-      "http://43.133.192.56:5555/api/cas/findAllSeq?type=" +
+      "https://tongji-software-igem2023.com/api/cas/findAllSeq?type=" +
         type.value +
         "&virus_id=" +
         virus_id.value
