@@ -667,10 +667,10 @@ const downloadClicked = () => {
   isClicked.value = true;
   const exportData = ref([]);
   exportData.value.push(
-    "https://tongji-software-igem2023.com///virus-to-excel?virus_id=" + virus_id.value
+    "https://tongji-software-igem2023.com/api/virus-to-excel?virus_id=" + virus_id.value
   );
   exportData.value.push(
-    "https://tongji-software-igem2023.com//cas-to-excel?type=" +
+    "https://tongji-software-igem2023.com/api/cas-to-excel?type=" +
       type.value +
       "&virus_id=" +
       virus_id.value
