@@ -1,9 +1,12 @@
 <template>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
 <div>
     <img src="../assets/pictures/bg-1.jpg" class="bg-1" style="z-index: 1;">
     <img src="../assets/pictures/bg-2.jpg" class="bg-2" style="z-index: 1;">
     <img src="../assets/pictures/caSleuth.jpg" class="cas" style="z-index: 2;">
-    <div class="text" style="z-index: 2;">Thank you for using our services. We hope that our database and software will offer you convenience.</div> 
+    <div class="text" style="z-index: 2; font-family: 'Orbitron', sans-serif;margin-top:10px;">Thank you for using our services. </div> 
+    <div class="text" style="z-index: 2; font-family: 'Orbitron', sans-serif;margin-top:35px;">We hope that our database and software will offer you convenience.</div>
     <div style=" z-index: 3; height: 70px;width: 100%;">
     <!-- <el-row :gutter="19" style="z-index: 3;position: fixed;right: 20%;bottom: 15%;">
         <el-col :span="16">
