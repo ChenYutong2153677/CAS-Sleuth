@@ -63,8 +63,9 @@
         </el-button>
     </div> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
+    <confirmBox ref="confirmBoxRef"></confirmBox>
 <div>
+  <loadingLogo v-if="isLoading" style="z-index: 999"></loadingLogo>
   <el-card class="card-head">
     <button class="custom-button" @click="downloadClicked" :class="{ clicked: isClicked }">
       <span class="material-icons">download</span><span>Download</span>
@@ -369,7 +370,9 @@ import { onMounted, ref } from "vue";
 //import { ArrowDown } from '@element-plus/icons-vue'
 //const virus_name = ref('')
 import { useRoute } from "vue-router";
-
+import loadingLogo from "@/components/loadingLogo.vue";
+import confirmBox from "@/components/confirmBox.vue";
+const confirmBoxRef=ref()
 //    const router=useRouter()
 const route = useRoute();
 
@@ -392,6 +395,7 @@ const isClicked = ref(false);
 const isChecked1=ref(false);
 const isChecked2=ref(false);
 const isChecked3=ref(false)
+const isLoading=ref(false)
 // const ischecked = ref(false);
 const content=ref('')
 
@@ -408,7 +412,7 @@ const chooseSelected=()=>{
 const downloadClicked = async () => {
   try {
         // 发送POST请求并获取文件数据
-        const response = await fetch('/api/software-to-excel', {
+        const response = await fetch('http://43.133.192.56:5555/api/software-to-excel', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json', // 根据你的需求设置适当的Content-Type
@@ -449,10 +453,8 @@ const downloadClicked = async () => {
       }
 };
 onMounted(async () => {
-
   content.value=route.query.content
   type.value=route.query.type
-
   get_cas_information()
   
   if(type.value==='cas9'){
@@ -470,8 +472,9 @@ onMounted(async () => {
 });
 
 const get_cas_information=async ()=>{
+  isLoading.value=true
   await axios({
-                    url: '/api/software/process',
+                    url: 'http://43.133.192.56:5555/api/software/process',
                     method: 'post',
                     data: JSON.stringify({
                       type:type.value,
@@ -485,8 +488,12 @@ const get_cas_information=async ()=>{
             )
     .then((response) => {
       // 处理成功响应
+      isLoading.value=false
       console.log(response.data.cas_result);
       cas_result.value = response.data.cas_result;
+      if(cas_result.value.length<1){
+        confirmBoxRef.value.openDialog()
+      }
       console.log(cas_result.value.length);
       cas_result_order_by_percentage.value = JSON.parse(
         JSON.stringify(cas_result.value)
@@ -500,6 +507,7 @@ const get_cas_information=async ()=>{
     })
     .catch((error) => {
       // 处理错误
+      isLoading.value=false
       cas_result_order_by_percentage.value = [];
       cas_result_order.value = [];
       cas_result.value = [];
@@ -544,7 +552,7 @@ function go_to_below(index) {
   // const height=document.getElementById(index).offsetTop+window.scrollY
   const height =
     document.getElementById(index).offsetTop +
-    document.documentElement.clientHeight * 1.5;
+    document.documentElement.clientHeight * 1.7;
   console.log(height);
   window.scrollTo({ top: height, behavior: "smooth" });
 }
