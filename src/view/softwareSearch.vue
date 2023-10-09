@@ -84,7 +84,7 @@
                         <div class="tag tag1">DNA virus</div>
                     </div>
                     <div class="option-box cas12">
-                        <el-radio label="cas12" class="radio">cas 12a</el-radio>
+                        <el-radio label="cas12" class="radio">cas 12</el-radio>
                         <div class=" tag tag2">Retroviral RNA virus</div>
                     </div>
                     <div class="option-box cas13">

@@ -156,7 +156,7 @@
 }
 .text{
     position: absolute;
-    font: Arial;
+    font-family: Orbitron;
     font-size: 20px;
     left: 15%;
     top:50%;

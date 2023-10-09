@@ -245,7 +245,7 @@
             }}</el-col>
             <el-col :span="4">Type：</el-col>
             <el-col :span="4" style="font-weight: bold; font-size: large"
-              >DNA Virus</el-col
+              >{{detail.type}}</el-col
             >
           </el-row>
         </div>
@@ -642,6 +642,7 @@ const detail = ref({
   organism_name: "Giant panda associated gemycircularvirus",
   accession: "NC_075336.1",
   family: "Genomoviridae",
+  type:'DNA Virus'
 });
 const cas_result = ref([]);
 const cas_result_order_by_percentage = ref([]);
@@ -726,6 +727,7 @@ const get_basic_information = async () => {
       detail.value.organism_name = response.data.organism_name;
       detail.value.accession = response.data.accession;
       detail.value.family = response.data.family;
+      detail.value.type=response.data.type
     })
     .catch((error) => {
       // 处理错误
