@@ -2,6 +2,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
 <div>
+
     <img src="../assets/pictures/bg-1.jpg" class="bg-1" style="z-index: 1;">
     <img src="../assets/pictures/bg-2.jpg" class="bg-2" style="z-index: 1;">
     <img src="../assets/pictures/caSleuth.jpg" class="cas" style="z-index: 2;">
@@ -18,6 +19,7 @@
             </el-button>
         </el-col>
     </el-row> -->
+        <instructionButton class="instruction" @click="goInstruction"></instructionButton>
     <el-button class="database" style="z-index: 2;" @click="goDBSearch">
             </el-button>
     <el-button class="software" style="z-index: 2;" @click="goSoftwareSearch">
@@ -31,6 +33,7 @@
 </template>
 
 <script setup>
+import instructionButton from "@/components/instructionButton.vue";
     import { useRouter } from 'vue-router';
     // // const route = useRoute();
     const router = useRouter();
@@ -156,12 +159,17 @@
 }
 .text{
     position: absolute;
-    font: Arial;
+    font-family: Orbitron;
     font-size: 20px;
     left: 15%;
     top:50%;
 }
-
+.instruction{
+    position: absolute;
+    z-index: 99;
+    top: 5%;
+    right:4%;
+}
 .database{
     background-image: url('../assets/pictures/database.jpg');
     border: none;

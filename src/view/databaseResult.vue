@@ -15,9 +15,13 @@
                 </el-col>
             </el-row>
         </div>
-        <div class="result_num">
+        <div class="result_num" v-if="IsEmpty">
             for “<span class="green">{{ this.input }}</span>” we have <span class="green">{{ this.virus_num }}</span>
             results for you.
+        </div>
+        <div class="result_num" v-if="!IsEmpty">
+            for  <span class="green">ALL</span> we have <span class="green">{{ this.virus_num }}</span>
+            results for you. <span class="green">Input the virus name to filter the information you want !</span>
         </div>
         <div>
             <downloadButton @click="download" class="position" style="vertical-align: -40%"></downloadButton>
@@ -46,13 +50,13 @@
                     </template>
 
                 </el-table-column>
-                <el-table-column prop="organism_name" label="Organism_Name" width="170"/>
+                <el-table-column prop="organism_name" label="Organism Name" width="170"/>
                 <el-table-column prop="isolate" label="Isolate" width="90"/>
                 <el-table-column prop="species" label="Species"/>
                 <el-table-column prop="family" label="Family" width="130"/>
                 <el-table-column prop="length" label="Length" width="80"/>
                 <el-table-column prop="segment" label="Segment" width="90"/>
-                <el-table-column prop="geo_location" label="Geo_location" width="140"/>
+                <el-table-column prop="geo_location" label="Geo location" width="140"/>
                 <el-table-column prop="host" label="Host"/>
                 <el-table-column prop="more" label="..." width="50"/>
             </el-table>
@@ -164,6 +168,7 @@ import downloadButton from "@/components/download-button.vue";
 import dialogBox from "@/components/dialogBox.vue";
 // import {ElMessage} from "element-plus";
 import axios from "axios";
+// import {ElMessage} from "element-plus";
 
 export default {
     name: 'databaseResult',
@@ -178,13 +183,20 @@ export default {
             totalPage_num: 0,
             multipleSelection: [],
             virus_id_list: [],
+            IsEmpty:false,
         }
     },
     created() {
         this.input = this.$route.query.input;
         console.log("new page:" + this.input);
-
         //获取病毒列表并赋值给本页的virus_list
+        if (this.input === ''||this.input === undefined||this.input === null) {
+            // ElMessage({
+            //     message: 'Please input the virus name!',
+            //     type: 'warning'
+            // });
+            this.input = '';
+        }
         this.getData();
     },
     methods: {
@@ -245,6 +257,16 @@ export default {
             this.getData();
         },
     },
+    watch:{
+        //监听input的变化,如果不为空，就将IsEmpty设置为true,否则为false
+        input:function (newVal) {
+            if(newVal!==''){
+                this.IsEmpty=true;
+            }else{
+                this.IsEmpty=false;
+            }
+        }
+    }
 }
 </script>
 
