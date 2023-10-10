@@ -504,7 +504,7 @@
             top: 2.5%;
             left: 5%;
             font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
+            font-size: 0.8rem;
             line-height: 1.5;
             color: #333;
             padding: 10px;

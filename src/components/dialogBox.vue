@@ -1,7 +1,6 @@
 <template>
     <el-dialog custom-class="dialog" v-model="centerDialogVisible" title="Download" width="40%" height="30%" style="background-color: rgb(224,248,238);
 ">
-        <img src="../assets/close.png" class="close_icon" style="width: 6%;height: 15%;"/>
         <span class="form-title">
       File form：Excel
     </span>
