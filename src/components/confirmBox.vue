@@ -12,6 +12,7 @@
     style="background-color: rgb(194, 203, 234); border-radius: 10px"
   >
     <img class="warning-icon" src="../assets/ConfirmBox.png" alt="Warning">
+    <br>
     <span class="form-title">
       There is <b>NO CORRESPONDING RESULT</b> for this protein!
     </span>
@@ -48,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .close_icon {
   position: absolute;
   top: 15px;
