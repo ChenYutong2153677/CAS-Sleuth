@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-dialog class="dialog" title="Instruction" v-model="dialogVisible" width="30%" >
-            <img class="Pic" src="../assets/pictures/LongPic.jpg" fit="fill">
+            <img class="Pic" src="../assets/pictures/intro.png" fit="fill">
             <template #footer>
                 <span class="dialog-footer">
                     <el-button class="dialog-button" @click="dialogVisible = false">Close</el-button>
@@ -37,6 +37,7 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
 :deep(.el-dialog){
     margin-top: 5%;
